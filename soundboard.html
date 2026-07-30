@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soundboard</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f0c20, #15102a);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, #ff007f, #00f0ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+        }
+
+        p.subtitle {
+            color: #8a8aa3;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        .soundboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .sound-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem 1rem;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .sound-btn:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #00f0ff;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+        }
+
+        .sound-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 0 5px rgba(0, 240, 255, 0.2);
+        }
+
+        .sound-btn.featured {
+            border-color: #ff007f;
+            background: linear-gradient(135deg, rgba(255, 0, 127, 0.15), rgba(0, 0, 0, 0.2));
+        }
+
+        .sound-btn.featured:hover {
+            border-color: #ff007f;
+            box-shadow: 0 0 15px rgba(255, 0, 127, 0.5);
+        }
+
+        .icon {
+            font-size: 1.8rem;
+        }
+
+        .stop-container {
+            margin-top: 2.5rem;
+        }
+
+        .stop-btn {
+            background: #ff3366;
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            box-shadow: 0 0 10px rgba(255, 51, 102, 0.4);
+        }
+
+        .stop-btn:hover {
+            background: #ff0040;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Soundboard</h1>
+    <p class="subtitle">Kattints a gombokra a lejátszáshoz!</p>
+
+    <div class="soundboard-grid">
+        <button class="sound-btn" onclick="playSound('careless_whispers.mp3')">
+            <span class="icon">🎷</span>
+            <span>Careless Whisper</span>
+        </button>
+
+        <button class="sound-btn" onclick="playSound('https://www.myinstants.com/media/sounds/rizz-sound-effect.mp3')">
+            <span class="icon">😏</span>
+            <span>Romantic (Rizz)</span>
+        </button>
+
+        <button class="sound-btn" onclick="playSound('titanic.mp3')">
+            <span class="icon">⛴</span>
+            <span>Titanic Sad Flute</span>
+        </button>
+
+        <button class="sound-btn" onclick="playSound('https://www.myinstants.com/media/sounds/vine-boom.mp3')">
+            <span class="icon">💥</span>
+            <span>Vine Boom</span>
+        </button>
+
+        <button class="sound-btn" onclick="playSound('https://www.myinstants.com/media/sounds/bruh-sound-effect-1.mp3')">
+            <span class="icon">🗿</span>
+            <span>BRUH</span>
+        </button>
+
+        <button class="sound-btn" onclick="playSound('https://www.myinstants.com/media/sounds/sad-violin.mp3')">
+            <span class="icon">🎻</span>
+            <span>Sad Violin</span>
+        </button>
+
+        <button class="sound-btn" onclick="playSound('https://www.myinstants.com/media/sounds/emotional-damage-meme.mp3')">
+            <span class="icon">💔</span>
+            <span>Emotional Damage</span>
+        </button>
+
+        <button class="sound-btn" onclick="playSound('https://www.myinstants.com/media/sounds/discord-notification.mp3')">
+            <span class="icon">🔔</span>
+            <span>Discord Ping</span>
+        </button>
+
+        <button class="sound-btn" onclick="playSound('https://www.myinstants.com/media/sounds/fart-meme-sound.mp3')">
+            <span class="icon">💨</span>
+            <span>Wet Fart</span>
+        </button>
+
+        <button class="sound-btn" onclick="playSound('https://www.myinstants.com/media/sounds/error.mp3')">
+            <span class="icon">⚠️</span>
+            <span>Windows Error</span>
+        </button>
+
+        <button class="sound-btn" onclick="playSound('https://www.myinstants.com/media/sounds/anime-wow.mp3')">
+            <span class="icon">✨</span>
+            <span>Anime WOW</span>
+        </button>
+
+        <button class="sound-btn" onclick="playSound('https://www.myinstants.com/media/sounds/quack.mp3')">
+            <span class="icon">🦆</span>
+            <span>Duck Quack</span>
+        </button>
+
+
+        <button class="sound-btn" onclick="playSound('https://www.myinstants.com/media/sounds/chicken-on-tree-screaming.mp3')">
+            <span class="icon">🐔</span>
+            <span>Chicken on tree</span>
+             </button>
+
+        <button class="sound-btn" onclick="playSound('https://www.myinstants.com/media/sounds/faaah.mp3')">
+            <span class="icon">🐔</span>
+            <span>FAAAH</span>
+             </button>
+
+        <button class="sound-btn" onclick="playSound('sad-meow-song.mp3')">
+            <span class="icon">🐱</span>
+            <span>Meow Meow</span>
+             </button>
+
+        <button class="sound-btn" onclick="playSound('spongebob.mp3')">
+            <span class="icon">🧽</span>
+            <span>SpongeBob</span>
+             </button>
+
+    </div>
+
+    <div class="stop-container">
+        <button class="stop-btn" onclick="stopAllSounds()">Minden hang leállítása 🛑</button>
+    </div>
+
+    <script>
+        let activeAudios = [];
+
+        function playSound(url) {
+            const audio = new Audio(url);
+            activeAudios.push(audio);
+            
+            audio.play().catch(error => {
+                console.log("Hiba a lejátszás során:", error);
+            });
+
+            audio.onended = () => {
+                activeAudios = activeAudios.filter(a => a !== audio);
+            };
+        }
+
+        function stopAllSounds() {
+            activeAudios.forEach(audio => {
+                audio.pause();
+                audio.currentTime = 0;
+            });
+            activeAudios = [];
+        }
+    </script>
+
+</body>
+</html>
